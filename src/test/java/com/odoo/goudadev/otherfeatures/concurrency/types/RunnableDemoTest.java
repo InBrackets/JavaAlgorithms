@@ -35,6 +35,8 @@ class RunnableDemoTest extends AbstractTest {
         thread1.start();
         thread2 = new Thread(task);
         thread2.start();
+
+        // or in short -> new Thread(task).start();
     }
 
     @Override
