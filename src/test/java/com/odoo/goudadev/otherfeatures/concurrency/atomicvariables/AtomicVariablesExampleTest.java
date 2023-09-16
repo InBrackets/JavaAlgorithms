@@ -1,4 +1,4 @@
-package com.odoo.goudadev.otherfeatures.concurrency;
+package com.odoo.goudadev.otherfeatures.concurrency.atomicvariables;
 
 import com.odoo.goudadev.array.AbstractTest;
 import lombok.extern.slf4j.Slf4j;
@@ -24,6 +24,7 @@ class AtomicVariablesExampleTest extends AbstractTest {
     public static volatile HashSet<Customer> customers = new HashSet<>();
     public static HashSet<AtomicCustomer> atomicCustomersSet = new HashSet<>();
     public static final int THREAD_COUNT = 10000;
+
     @BeforeEach
     void beforeEach() {
         AtomicCustomer.resetCounter();
@@ -37,24 +38,24 @@ class AtomicVariablesExampleTest extends AbstractTest {
     @ParameterizedTest(name = "Case {index}: THREAD_COUNT={0}")
     @MethodSource("generateTestData")
     void testAtomicVariablesInConcurrency(int THREAD_COUNT) {
-            ThreadGroup threadGroupOne = new ThreadGroup("ThreadGroupOne");
+        ThreadGroup threadGroupOne = new ThreadGroup("ThreadGroupOne");
 
-            for (int i = 0; i < THREAD_COUNT; i++) {
-                AtomicCustomerThread t1 = new AtomicCustomerThread(threadGroupOne, "Thread-" + i, atomicCustomers);
-                t1.start();
+        for (int i = 0; i < THREAD_COUNT; i++) {
+            AtomicCustomerThread t1 = new AtomicCustomerThread(threadGroupOne, "Thread-" + i, atomicCustomers);
+            t1.start();
+        }
+        while (threadGroupOne.activeCount() != 0) {
+            // wait until all threads are done
+        }
+        // save all customers to a set in order to get rid of the null values
+        for (int i = 0; i < atomicCustomers.length(); i++) {
+            if (atomicCustomers.get(i) == null) {
+                continue;
             }
-            while (threadGroupOne.activeCount() != 0) {
-                // wait until all threads are done
-            }
-            // save all customers to a set in order to get rid of the null values
-            for (int i = 0; i < atomicCustomers.length(); i++) {
-                if (atomicCustomers.get(i) == null) {
-                    continue;
-                }
-                atomicCustomersSet.add(atomicCustomers.get(i));
-            }
-            // all customers with unique id should be present
-            assertEquals(THREAD_COUNT, atomicCustomersSet.size());
+            atomicCustomersSet.add(atomicCustomers.get(i));
+        }
+        // all customers with unique id should be present
+        assertEquals(THREAD_COUNT, atomicCustomersSet.size());
     }
 
     @ParameterizedTest(name = "Case {index}: THREAD_COUNT={0}")

@@ -1,4 +1,4 @@
-package com.odoo.goudadev.otherfeatures.concurrency;
+package com.odoo.goudadev.otherfeatures.concurrency.atomicvariables;
 
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
