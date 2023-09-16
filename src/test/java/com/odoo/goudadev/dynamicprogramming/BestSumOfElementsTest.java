@@ -18,13 +18,13 @@ class BestSumOfElementsTest extends AbstractTest {
     @ParameterizedTest(name = "Case {index}: targetSum={0}, numbers={1}, output={2}")
     @MethodSource("generateTestData")
     void bestSumRecursiveWay(long targetSum, List<Long> numbers, List<Long> output) {
-        assertThat(BestSumOfElements.bestSumRecursiveWay(targetSum, numbers)).usingRecursiveComparison().isEqualTo(output);
+        assertThat(BestSumOfElements.bestSumRecursiveWay(targetSum, numbers).stream().sorted()).usingRecursiveComparison().isEqualTo(output);
     }
 
     @ParameterizedTest(name = "Case {index}: targetSum={0}, numbers={1}, output={2}")
     @MethodSource("generateTestData")
     void bestSumMemoicWay(long targetSum, List<Long> numbers, List<Long> output) {
-        assertThat(BestSumOfElements.bestSumMemoicWay(targetSum, numbers)).containsAll(output);
+        assertThat(BestSumOfElements.bestSumMemoicWay(targetSum, numbers).stream().sorted()).containsAll(output);
     }
 
     @BeforeEach
