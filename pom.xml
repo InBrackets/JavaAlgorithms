@@ -113,7 +113,7 @@
                 <version>${maven-surefire-plugin.version}</version> <!-- Or any other version -->
                 <configuration>
                     <includes>
-                        <include>**/InvokeManyCallablesTest.java</include>
+                        <include>**/*Test.java</include>
                     </includes>
                 </configuration>
             </plugin>
