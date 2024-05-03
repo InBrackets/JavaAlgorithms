@@ -29,6 +29,9 @@ jobs:
     - name: Run tests
       run: mvn test -Dsurefire.reports.directory=$PWD/target/surefire-reports
 
+    - name: List files in surefire-reports directory
+      run: ls -R $PWD/target/surefire-reports
+
     - name: Archive test results
       uses: actions/upload-artifact@v2
       with:
