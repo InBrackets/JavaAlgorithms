@@ -106,6 +106,18 @@
     </dependencies>
 
     <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>${maven-surefire-plugin.version}</version> <!-- Or any other version -->
+                <configuration>
+                    <includes>
+                        <include>**/InvokeManyCallablesTest.java</include>
+                    </includes>
+                </configuration>
+            </plugin>
+        </plugins>
 <!--        <plugins>-->
 <!--            <plugin>-->
 <!--                <groupId>org.apache.maven.plugins</groupId>-->
