@@ -37,3 +37,13 @@ jobs:
       with:
         name: test-results
         path: target/surefire-reports/
+
+  report:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: dorny/test-reporter@v1
+        with:
+          artifact: test-results            # artifact name
+          name: JAVA Tests                  # Name of the check run which will be created
+          path: '*.xml'                     # Path to test results (inside artifact .zip)
+          reporter: java-junit              # Format of test results
