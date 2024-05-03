@@ -28,4 +28,4 @@ jobs:
 
     - name: Run tests
       run: mvn test
-      working-directory: src/test/java/com/odoo/goudadev
+      working-directory: .
