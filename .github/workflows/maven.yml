@@ -45,9 +45,6 @@ jobs:
           name: test-results
           path: /tmp/test-results
 
-      - name: List files in test results directory
-        run: ls /tmp/test-results
-
       - name: Generate test report
         uses: dorny/test-reporter@v1
         with:
