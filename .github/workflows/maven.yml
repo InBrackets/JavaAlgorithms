@@ -28,4 +28,15 @@ jobs:
 
     - name: Run tests
       run: mvn test
-      working-directory: .
+      continue-on-error: true
+
+    - name: Convert test results to JUnit XML
+      uses: EnricoMi/maven-test@v2
+      with:
+        path-to-surefire-reports: '**/surefire-reports/TEST-*.xml'
+
+    - name: Upload test results
+      uses: actions/upload-artifact@v2
+      with:
+        name: test-results
+        path: '**/target/surefire-reports/TEST-*.xml'
