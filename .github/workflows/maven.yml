@@ -27,7 +27,7 @@ jobs:
       run: mvn -B clean install
 
     - name: Run tests
-      run: mvn test -Dtest=com.odoo.goudadev.otherfeatures.concurrency.types.InvokeManyCallablesTest,com.odoo.goudadev.junitpioneer.TestRetryingTest -Dsurefire.reports.directory=$PWD/target/surefire-reports
+      run: mvn test -Dsurefire.reports.directory=$PWD/target/surefire-reports
 
     - name: Archive test results
       uses: actions/upload-artifact@v2
