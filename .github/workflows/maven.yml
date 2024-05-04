@@ -51,8 +51,8 @@ jobs:
       - name: Generate test report
         uses: dorny/test-reporter@v1
         with:
-          artifact: junit-test-results
-          name: JAVA Tests
-          path: '/tmp/test-results/*.xml'
+          artifact: test-results
+          name: 'Test report $1'
+          path: /'/**/*.xml'/
           reporter: java-junit
           fail-on-empty: 'false'
