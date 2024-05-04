@@ -45,6 +45,9 @@ jobs:
           name: test-results
           path: /tmp/test-results
 
+      - name: List downloaded artifacts
+        run: ls -R /tmp/test-results
+
       - name: Generate test report
         uses: dorny/test-reporter@v1
         with:
