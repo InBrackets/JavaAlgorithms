@@ -52,3 +52,4 @@ jobs:
           name: JAVA Tests
           path: '/tmp/test-results/*.xml'
           reporter: java-junit
+          fail-on-empty: 'false'
