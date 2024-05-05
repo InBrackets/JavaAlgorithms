@@ -43,16 +43,16 @@ jobs:
         uses: actions/download-artifact@v2
         with:
           name: test-results
-          path: /tmp/test-results
+          path: ${{ github.workspace }}/test-results
 
       - name: List downloaded artifacts
-        run: ls -R /tmp/test-results
+        run: ls -R ${{ github.workspace }}/test-results
 
       - name: Generate test report
         uses: dorny/test-reporter@v1
         with:
           artifact: test-results
           name: 'Test report $1'
-          path: '/tmp/test-results/**/*.xml'
+          path: '${{ github.workspace }}/test-results/**/*.xml'
           reporter: java-junit
           fail-on-empty: 'false'
